@@ -1,1 +1,111 @@
-1
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简洁邮箱</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #f1f1f1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+        .menu-item {
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .menu-item:hover {
+            background-color: #e0e0e0;
+        }
+        .night-mode {
+            margin-top: auto;
+        }
+        .night-mode-toggle {
+            cursor: pointer;
+        }
+        .content-area {
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            min-height: 300px;
+        }
+        body.dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+        body.dark-mode .sidebar {
+            background-color: #222;
+        }
+        body.dark-mode .menu-item {
+            background-color: #444;
+            color: #fff;
+        }
+        body.dark-mode .main-content {
+            background-color: #333;
+        }
+        body.dark-mode .content-area {
+            border-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="menu-item" onclick="showContent('compose')">发信</div>
+        <div class="menu-item" onclick="showContent('inbox')">收信</div>
+        <div class="menu-item" onclick="showContent('trash')">回收站</div>
+        <div class="menu-item" onclick="showContent('contacts')">通讯录</div>
+        <div class="night-mode">
+            <label class="night-mode-toggle">
+                <input type="checkbox" id="nightModeToggle" onchange="toggleNightMode()">
+                夜间模式
+            </label>
+        </div>
+    </div>
+    <div class="main-content">
+        <div id="contentArea" class="content-area">
+            请选择左侧菜单项
+        </div>
+    </div>
+
+    <script>
+        function showContent(contentType) {
+            const contentArea = document.getElementById('contentArea');
+            switch(contentType) {
+                case 'compose':
+                    contentArea.innerHTML = '这里是发信界面';
+                    break;
+                case 'inbox':
+                    contentArea.innerHTML = '这里是收信界面';
+                    break;
+                case 'trash':
+                    contentArea.innerHTML = '这里是回收站界面';
+                    break;
+                case 'contacts':
+                    contentArea.innerHTML = '这里是通讯录界面';
+                    break;
+            }
+        }
+
+        function toggleNightMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</body>
+</html>
