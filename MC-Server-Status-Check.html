@@ -103,12 +103,13 @@
             text-align: center;
             margin-top: 20px;
         }
+
         .loading {
             display: none;
             text-align: center;
             padding: 20px;
         }
-        
+
         .spinner {
             border: 4px solid #f3f3f3;
             border-top: 4px solid #3498db;
@@ -118,7 +119,7 @@
             animation: spin 1s linear infinite;
             margin: 0 auto 10px;
         }
-        
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -142,7 +143,7 @@
                     <h3>在线状况</h3>
                     <p id="status">-</p>
                 </div>
-            <div class="info-item">
+                <div class="info-item">
                     <h3>玩家数</h3>
                     <p id="players">-</p>
                 </div>
@@ -163,7 +164,7 @@
             const serverInput = document.getElementById('serverInput').value;
             const serverInfo = document.getElementById('serverInfo');
             const loading = document.getElementById('loading');
-
+            
             // 显示加载指示器
             loading.style.display = 'block';
             serverInfo.classList.remove('active');
@@ -171,7 +172,7 @@
             try {
                 // 使用公共的 Minecraft 服务器状态 API
                 const response = await fetch(`https://api.mcsrvstat.us/2/${serverInput}`);
-                const data = await response.json();    
+                const data = await response.json();
                 
                 // 更新 UI
                 serverInfo.classList.add('active');
@@ -189,9 +190,12 @@
                 document.getElementById('status').textContent = 'Error';
                 document.getElementById('status').style.color = '#e74c3c';
                 console.error('Error fetching server status:', error);
+            } finally {
+                // 隐藏加载指示器
+                loading.style.display = 'none';
             }
         }
- 
+
         // Check status on page load
         // checkServer();
     </script>
