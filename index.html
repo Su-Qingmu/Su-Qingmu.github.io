@@ -132,6 +132,7 @@
         <div class="search-box">
             <input type="text" id="serverInput" placeholder="输入IP或域名" value="mcss.suqingmu.top">
             <button onclick="checkServer()">检测</button>
+            <button onclick="chackServerInTime()">实时检测</button>
         </div>
         <div id="loading" class="loading">
             <div class="spinner"></div>
@@ -198,8 +199,11 @@
             }
         }
 
-        // Check status on page load
-        // checkServer();
+        //循环10分钟检测
+        async function chackServerInTime() {
+            checkServer();
+            setInterval(checkServer, 600000);
+        }
     </script>
 </body>
 </html>
